@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-use Yii;
-
-class UserController extends \yii\web\Controller
+class UserController extends BaseController
 {
     public function actionIndex()
     {
@@ -21,13 +19,10 @@ class UserController extends \yii\web\Controller
     }
 
     /**
-     * This action register "Hello world" in channel
-     * "main"(default when no value is setted on "getLogger" method).
+     * 测试Monolog
      */
     public function actionTest()
     {
-        $monologComponent = Yii::$app->monolog;
-        $logger           = $monologComponent->getLogger();
-        $logger->log('info', 'Hello world');
+        $this->logger->log('info', 'Hello world');
     }
 }
