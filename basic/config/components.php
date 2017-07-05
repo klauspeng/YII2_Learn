@@ -49,6 +49,10 @@ return [
                         'type'  => 'stream',
                         'path'  => '@app/runtime/logs/main_' . date('Y-m-d') . '.log',
                         'level' => 'debug'
+                    ],
+                    [
+                        'type'  => 'chromephp',
+                        'level' => 'debug'
                     ]
                 ],
                 'processor' => [],
