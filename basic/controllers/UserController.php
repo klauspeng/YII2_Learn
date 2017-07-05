@@ -33,6 +33,6 @@ class UserController extends BaseController
 
         // echo print_r($this->getView(),true);
         // echo json_encode($this->getView());
-        // var_dump($this->getView());
+        var_dump($this->getView());
     }
 }
