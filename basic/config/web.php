@@ -3,11 +3,13 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id'         => 'basic',
-    'basePath'   => dirname(__DIR__),
-    'bootstrap'  => ['log'],
-    'components' => require(__DIR__ . '/components.php'),
-    'params'     => $params,
+    'id'           => 'basic',
+    'basePath'     => dirname(__DIR__),
+    'bootstrap'    => ['log'],
+    'components'   => require(__DIR__ . '/components.php'),
+    'params'       => $params,
+    //  默认控制器
+    'defaultRoute' => 'blog/index',
 ];
 
 if (YII_ENV_DEV) {
