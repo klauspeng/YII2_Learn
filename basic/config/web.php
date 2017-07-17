@@ -10,6 +10,11 @@ $config = [
     'params'       => $params,
     //  默认控制器
     'defaultRoute' => 'blog/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\moudles\admin\Admin',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
