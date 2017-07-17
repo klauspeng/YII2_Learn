@@ -2,12 +2,12 @@
 
 namespace app\moudles\blog\controllers;
 
-use yii\web\Controller;
+use app\controllers\BaseController;
 
 /**
  * Default controller for the `blog` module
  */
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     /**
      * Renders the index view for the module
