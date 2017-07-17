@@ -8,11 +8,17 @@ $config = [
     'bootstrap'    => ['log'],
     'components'   => require(__DIR__ . '/components.php'),
     'params'       => $params,
-    //  默认控制器
-    'defaultRoute' => 'blog/index',
-    'modules' => [
+    // 默认控制器
+    'defaultRoute' => 'blog/index/index',
+    // 多模块
+    'modules'      => [
+        // 后台
         'admin' => [
             'class' => 'app\moudles\admin\Admin',
+        ],
+        // 前台
+        'blog' => [
+            'class' => 'app\moudles\blog\Blog',
         ],
     ],
 ];
