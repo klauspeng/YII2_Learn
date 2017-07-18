@@ -19,6 +19,7 @@ class Admin extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+        // 设置模块布局文件
+        $this->layout = 'main.php';
     }
 }
