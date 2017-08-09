@@ -21,10 +21,13 @@ class IndexController extends BaseController
 
     public function actionTest()
     {
-        // $up = $this->qiniu->put('test.png', 'test');
-        // var_dump($up);
+//         $up = $this->qiniu->put('test.png', 'test');
+//         var_dump($up);
 
         // $result = $this->qiniu->del('test');
         // var_dump($result);
+        \Yii::$container->set('app\models\di\Driver','app\models\di\Oldman');
+        \Yii::$app->car->run();
+
     }
 }

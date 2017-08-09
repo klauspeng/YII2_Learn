@@ -66,4 +66,7 @@ return [
             '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
         ],
     ],
+    'car' => [
+        'class' => 'app\models\di\Car'
+    ],
 ];
