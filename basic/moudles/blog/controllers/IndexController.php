@@ -3,6 +3,7 @@
 namespace app\moudles\blog\controllers;
 
 use app\controllers\BaseController;
+use  app\models\qiniu\Qiniu;
 
 /**
  * Default controller for the `blog` module
@@ -20,16 +21,7 @@ class IndexController extends BaseController
 
     public function actionTest()
     {
-        // $uid = md5(uniqid(md5(microtime(true)), true));
-        // echo $uid;
-        // var_dump(strlen($uid));
-
-        // 获取ID为 "forum" 的模块
-        $module = \Yii::$app->getModule('blog');
-
-        var_dump($module);
-
-
-        $module = \Yii::$app->controller->module;
+        $up = Qiniu::putFile('test.png','test');
+        var_dump($up);
     }
 }
