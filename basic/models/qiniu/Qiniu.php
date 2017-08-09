@@ -9,16 +9,17 @@ use Qiniu\Storage\BucketManager;
 
 class Qiniu extends Model
 {
-    /**
-     * 上传文件
-     */
-    public static function putFile($file, $name)
-    {
-        $data = [
-            'status' => false,
-            'data'   => [],
-        ];
 
+    private $auth = null;
+    private $token = null;
+    private $link = null;
+    private $bucket = null;
+
+    /**
+     * Qiniu constructor.
+     */
+    public function __construct()
+    {
         $qiniuConfig = \Yii::$app->params['qiniu'];
 
         // 配置
@@ -27,20 +28,36 @@ class Qiniu extends Model
         $bucket    = $qiniuConfig['bucket'];
         $link      = $qiniuConfig['link'];
 
+        $this->link   = $link;
+        $this->bucket = $bucket;
+
         // 生成上传Token
-        $auth  = new Auth($accessKey, $secretKey);
-        $token = $auth->uploadToken($bucket);
+        $this->auth  = new Auth($accessKey, $secretKey);
+        $this->token = $this->auth->uploadToken($bucket);
+    }
+
+
+    /**
+     * 上传文件
+     */
+    public function put($file, $name = null)
+    {
+        $name || $name = date('Ymd_His');
+        $data = [
+            'status' => false,
+            'data'   => [],
+        ];
 
         // 构建 UploadManager 对象
         $uploadMgr = new UploadManager();
         // 上传文件
-        $result = $uploadMgr->putFile($token, $name, $file);
+        $result = $uploadMgr->putFile($this->token, $name, $file);
 
         if (!$result[1])
         {
             $data['status'] = true;
             $data['data']   = $result[0];
-            $data['url']    = $link . '/' . $result[0]['key'];
+            $data['url']    = $this->link . '/' . $result[0]['key'];
 
             return $data;
         }
@@ -53,4 +70,15 @@ class Qiniu extends Model
         }
 
     }
+
+    /**
+     * 删除文件
+     */
+    public function del($file)
+    {
+        $BucketManager = new BucketManager($this->auth);
+        $result = $BucketManager->delete($this->bucket,$file);
+        return $result;
+    }
+
 }
